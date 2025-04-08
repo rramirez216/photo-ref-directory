@@ -10,12 +10,12 @@ def main():
             # print(os.listdir(f"{home_dir}/{'Art'}"))
             ref_photo_dir = os.listdir(f"{home_dir}/{'Art'}")
     for directory in ref_photo_dir:
+        list = []
         if directory == "reference photos":
-            print(
-                os.listdir(
-                    f"{home_dir}/Art/reference photos/Ultimate Female Poses Sample Pack"
-                )
-            )
+            currentDir = os.listdir(f"{home_dir}/Art/{directory}")
+            for file in currentDir:
+                list.append(currentDir)
+        print(list)
 
 
 main()
