@@ -1,9 +1,10 @@
 import os
+from pathlib import Path
 from helper_functions import *
 
 
 def main():
-    home_dir = os.environ["HOME"]
+    home_dir = Path.home()
     home_dir_list = filter_directories_with_period(os.listdir(home_dir))
     list_of_directories_in_home = "list of Directories:\n\n"
     ref_photo_dir = None
