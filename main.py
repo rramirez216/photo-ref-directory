@@ -17,7 +17,10 @@ def main():
             "that contains the reference image files: "
         )
     )
-    print(ref_photo_dir)
+    if ref_photo_dir in home_dir_list:
+        print(ref_photo_dir)
+    else:
+        os.makedirs(f"{home_dir}/{ref_photo_dir}")
 
 
 if __name__ == "__main__":
