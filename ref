@@ -7,6 +7,7 @@ from helper_functions import *
 
 def main():
     shelf = shelve.open("save_file")
+    # if sys.argv
     if not ("ref_photo_dir") in shelf:
         home_dir = Path.home()
         home_dir_list = filter_directories_with_period(os.listdir(home_dir))
