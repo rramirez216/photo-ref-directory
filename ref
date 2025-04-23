@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 import shelve
 import os
+import sys
 from pathlib import Path
 from helper_functions import *
 
 
 def main():
     shelf = shelve.open("save_file")
-    # if sys.argv
-    if not ("ref_photo_dir") in shelf:
+    if not ("ref_photo_dir") in shelf or sys.argv[1] == "reset":
         home_dir = Path.home()
         home_dir_list = filter_directories_with_period(os.listdir(home_dir))
         list_of_directories_in_home = "list of Directories:\n\n"
