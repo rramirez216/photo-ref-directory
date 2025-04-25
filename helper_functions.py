@@ -1,4 +1,4 @@
-def filter_directories_with_period(arr, path):
+def filter_dirs_with_period(arr, path):
     newArr = []
     for item in arr:
         item_path = path / item
