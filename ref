@@ -7,10 +7,10 @@ from helper_functions import *
 
 
 def main():
-    command = ""
-    if len(sys.argv) > 1:
-        command = sys.argv[1]
-    print(create_command_list())
+    if len(sys.argv) == 1:
+        print(create_command_list())
+        return
+    command = sys.argv[1]
     shelf = shelve.open("save_file")
     if command == "reset" or command == "add":
         home_dir = Path.home()
@@ -30,7 +30,8 @@ def main():
         shelf["ref_photo_dir"] = ref_photo_dir
         if not (ref_photo_dir) in home_dir_list:
             os.makedirs(f"{home_dir}/{ref_photo_dir}")
-    print(f"shelf file :  {shelf['ref_photo_dir']}")
+    if command == "current":
+        print(f"Current Directory:  {shelf['ref_photo_dir']}")
     shelf.close()
 
 
