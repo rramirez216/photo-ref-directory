@@ -3,17 +3,17 @@ import shelve
 import os
 import sys
 from pathlib import Path
-from helper_functions import *
+from helper_functions import create_command_list, filter_directories_with_period
 
 
 def main():
     if len(sys.argv) == 1:
         print(create_command_list())
         return
+    home_dir = Path.home()
     command = sys.argv[1]
     shelf = shelve.open("save_file")
     if command == "reset" or command == "add":
-        home_dir = Path.home()
         home_dir_list = filter_directories_with_period(os.listdir(home_dir), home_dir)
         list_of_directories_in_home = "list of Directories:\n\n"
         ref_photo_dir = None
@@ -32,6 +32,11 @@ def main():
             os.makedirs(f"{home_dir}/{ref_photo_dir}")
     if command == "current":
         print(f"Current Directory:  {shelf['ref_photo_dir']}")
+    if command == "shuffle":
+        parent_dir = home_dir / shelf["ref_photo_dir"]
+        current_glob_list = filter_directories_with_period(list(parent_dir.glob("*")))
+        for item in current_glob_list:
+            print(item.name)
     shelf.close()
 
 
