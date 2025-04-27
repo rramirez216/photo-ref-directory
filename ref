@@ -2,8 +2,9 @@
 import shelve
 import os
 import sys
+import random
 from pathlib import Path
-from helper_functions import create_command_list, filter_directories_with_period
+from helper_functions import create_command_list, filter_dirs_with_period, copy_file
 
 
 def main():
@@ -14,7 +15,7 @@ def main():
     command = sys.argv[1]
     shelf = shelve.open("save_file")
     if command == "reset" or command == "add":
-        home_dir_list = filter_directories_with_period(os.listdir(home_dir), home_dir)
+        home_dir_list = filter_dirs_with_period(os.listdir(home_dir), home_dir)
         list_of_directories_in_home = "list of Directories:\n\n"
         ref_photo_dir = None
 
@@ -33,10 +34,20 @@ def main():
     if command == "current":
         print(f"Current Directory:  {shelf['ref_photo_dir']}")
     if command == "shuffle":
+        image_list = []
         parent_dir = home_dir / shelf["ref_photo_dir"]
-        current_glob_list = filter_directories_with_period(list(parent_dir.glob("*")))
+        current_glob_list = filter_dirs_with_period(list(parent_dir.glob("*")))
+        # print(current_glob_list)
         for item in current_glob_list:
-            print(item.name)
+            if item.name == "Obscura Reference Sampler":
+                glob_list = filter_dirs_with_period(list(item.glob("*.jpg")))
+                for image in glob_list:
+                    image_list.append(image)
+                for i in range(int(sys.argv[2]) + 1):
+                    random_index = random.randrange(0, len(image_list))
+                    print(random_index)
+                    copy_file(image_list[random_index], home_dir / "gesture-quest-ref")
+
     shelf.close()
 
 
