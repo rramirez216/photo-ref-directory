@@ -1,9 +1,19 @@
-def filter_dirs_with_period(arr, path):
+import shutil
+
+
+def filter_dirs_with_period(arr, path=None):
     newArr = []
     for item in arr:
-        item_path = path / item
-        if not (item.startswith(".") or item.startswith("~") or item_path.is_file()):
-            newArr.append(item)
+        if path is None:
+            if not (item.name.startswith(".") or item.name.startswith("~")):
+                newArr.append(item)
+        else:
+            item_path = path / item
+            if not (
+                item.startswith(".") or item.startswith("~") or item_path.is_file()
+            ):
+                newArr.append(item)
+    # print(newArr)
     return newArr
 
 
@@ -21,3 +31,7 @@ def create_command_list():
         "    current\n"
         "    shuffle\n"
     )
+
+
+def copy_file(source, destination):
+    shutil.copy(source, destination)
