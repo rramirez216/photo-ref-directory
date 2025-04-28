@@ -8,12 +8,13 @@ from helper_functions import create_command_list, filter_dirs_with_period, copy_
 
 
 def main():
+    shelf = shelve.open("save_file")
     if len(sys.argv) == 1:
         print(create_command_list())
+        shelf.close()
         return
     home_dir = Path.home()
     command = sys.argv[1]
-    shelf = shelve.open("save_file")
     if command == "reset" or command == "add":
         home_dir_list = filter_dirs_with_period(os.listdir(home_dir), home_dir)
         list_of_directories_in_home = "list of Directories:\n\n"
@@ -37,23 +38,24 @@ def main():
         image_list = []
         parent_dir = home_dir / shelf["ref_photo_dir"]
         current_glob_list = filter_dirs_with_period(list(parent_dir.glob("*")))
-        previous_ref_dir = parent_dir / "gesture-quest-ref"
-        previuos_glob = list(previous_ref_dir.glob("*.jpg"))
-        for image in previuos_glob:
-            os.unlink(image)
-            print("list :", image)
-        # print(current_glob_list)
+        # check if the directory that holds the randomly picked images exits
+        if not (parent_dir / "Ref_Inbox") in current_glob_list:
+            # create it if it does not
+            os.makedirs(f"{parent_dir}/Ref_Inbox")
+        else:
+            # delete previous directory
+            previous_ref_dir = parent_dir / "Ref_Inbox"
+            previous_glob = list(previous_ref_dir.glob("*.jpg"))
+            for image in previous_glob:
+                os.unlink(image)
         for item in current_glob_list:
-            if item.name == "Obscura Reference Sampler":
+            if item.name == "Ultimate Female Poses Sample Pack":
                 glob_list = filter_dirs_with_period(list(item.glob("*.jpg")))
                 for image in glob_list:
                     image_list.append(image)
                 for i in range(int(sys.argv[2]) + 1):
                     random_index = random.randrange(0, len(image_list))
-                    print(random_index)
-                    copy_file(
-                        image_list[random_index], parent_dir / "gesture-quest-ref"
-                    )
+                    copy_file(image_list[random_index], parent_dir / "Ref_Inbox")
 
     shelf.close()
 
