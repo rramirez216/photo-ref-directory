@@ -1,4 +1,5 @@
 import shutil
+import random
 
 
 def filter_dirs_with_period(arr, path=None):
@@ -35,3 +36,14 @@ def create_command_list():
 
 def copy_file(source, destination):
     shutil.copy(source, destination)
+
+
+def random_nums(amount, length):
+    list = []
+    for i in range(amount):
+        list.append(random.randrange(0, length))
+    print(list)
+    return list
+
+
+random_nums(4, 11)
