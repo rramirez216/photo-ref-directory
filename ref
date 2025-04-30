@@ -57,6 +57,8 @@ def main():
             if item.name == "Ref_Inbox":
                 continue
             item_list = filter_dirs_with_period(list(item.glob("*")))
+            if item_list[0].is_dir():
+                continue
             # for sub_item in item_list:
             #     if sub_item.is_dir():
             #         sub_item_list = filter_dirs_with_period
