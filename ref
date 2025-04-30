@@ -4,7 +4,12 @@ import os
 import sys
 import random
 from pathlib import Path
-from helper_functions import create_command_list, filter_dirs_with_period, copy_file
+from helper_functions import (
+    create_command_list,
+    filter_dirs_with_period,
+    copy_file,
+    random_nums,
+)
 
 
 def main():
@@ -49,18 +54,23 @@ def main():
             for image in previous_glob:
                 os.unlink(image)
         for item in current_list_of_dirs:
+            if item.name == "Ref_Inbox":
+                continue
             item_list = filter_dirs_with_period(list(item.glob("*")))
-            for sub_item in item_list:
-                if sub_item.is_dir():
-                    sub_item_list = filter_dirs_with_period
-                    (list(sub_item.glob("*.jpg")))
-                    continue
-                else:
-
-                    image_list.append(image)
-            for i in range(int(sys.argv[2])):
-                random_index = random.randrange(0, len(image_list))
-                copy_file(image_list[random_index], parent_dir / "Ref_Inbox")
+            # for sub_item in item_list:
+            #     if sub_item.is_dir():
+            #         sub_item_list = filter_dirs_with_period
+            #         (list(sub_item.glob("*.jpg")))
+            #         continue
+            print(item.name, ":", len(item_list))
+            num_list = random_nums(5, len(item_list))
+            for num in num_list:
+                image_list.append(item_list[num])
+        print(len(image_list))
+        for i in range(int(sys.argv[2])):
+            random_index = random.randrange(0, len(image_list))
+            # copy_file(image_list[random_index], parent_dir / "Ref_Inbox")
+            print(image_list[random_index])
 
     shelf.close()
 
