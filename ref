@@ -37,9 +37,9 @@ def main():
     if command == "shuffle":
         image_list = []
         parent_dir = home_dir / shelf["ref_photo_dir"]
-        current_glob_list = filter_dirs_with_period(list(parent_dir.glob("*")))
+        current_list_of_dirs = filter_dirs_with_period(list(parent_dir.glob("*")))
         # check if the directory that holds the randomly picked images exits
-        if not (parent_dir / "Ref_Inbox") in current_glob_list:
+        if not (parent_dir / "Ref_Inbox") in current_list_of_dirs:
             # create it if it does not
             os.makedirs(f"{parent_dir}/Ref_Inbox")
         else:
@@ -48,14 +48,19 @@ def main():
             previous_glob = list(previous_ref_dir.glob("*.jpg"))
             for image in previous_glob:
                 os.unlink(image)
-        for item in current_glob_list:
-            if item.name == "Ultimate Female Poses Sample Pack":
-                glob_list = filter_dirs_with_period(list(item.glob("*.jpg")))
-                for image in glob_list:
+        for item in current_list_of_dirs:
+            item_list = filter_dirs_with_period(list(item.glob("*")))
+            for sub_item in item_list:
+                if sub_item.is_dir():
+                    sub_item_list = filter_dirs_with_period
+                    (list(sub_item.glob("*.jpg")))
+                    continue
+                else:
+
                     image_list.append(image)
-                for i in range(int(sys.argv[2]) + 1):
-                    random_index = random.randrange(0, len(image_list))
-                    copy_file(image_list[random_index], parent_dir / "Ref_Inbox")
+            for i in range(int(sys.argv[2])):
+                random_index = random.randrange(0, len(image_list))
+                copy_file(image_list[random_index], parent_dir / "Ref_Inbox")
 
     shelf.close()
 
