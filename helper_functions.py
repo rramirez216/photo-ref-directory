@@ -41,9 +41,13 @@ def copy_file(source, destination):
 def random_nums(amount, length):
     list = []
     for i in range(amount):
-        list.append(random.randrange(0, length))
-    print(list)
+        num = random.randrange(0, length)
+        if length > amount:
+            while num in list:
+                print("redo!")
+                num = random.randrange(0, length)
+        list.append(num)
     return list
 
 
-random_nums(4, 11)
+random_nums(5, 8)
