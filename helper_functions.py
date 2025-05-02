@@ -14,7 +14,6 @@ def filter_dirs_with_period(arr, path=None):
                 item.startswith(".") or item.startswith("~") or item_path.is_file()
             ):
                 newArr.append(item)
-    # print(newArr)
     return newArr
 
 
