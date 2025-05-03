@@ -66,7 +66,6 @@ def main():
             #         sub_item_list = filter_dirs_with_period
             #         (list(sub_item.glob("*.jpg")))
             #         continue
-            print(item.name, ":", len(item_list))
             num_list = random_nums(5, len(item_list))
             for num in num_list:
                 image_list.append(item_list[num])
