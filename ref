@@ -37,6 +37,7 @@ def main():
         shelf["ref_photo_dir"] = ref_photo_dir
         if not (ref_photo_dir) in home_dir_list:
             os.makedirs(f"{home_dir}/{ref_photo_dir}")
+    # returns the current directory that holds the reference images
     if command == "current":
         print(f"Current Directory:  {shelf['ref_photo_dir']}")
     if command == "shuffle":
