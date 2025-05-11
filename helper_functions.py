@@ -47,6 +47,3 @@ def random_nums(amount, length):
                 num = random.randrange(0, length)
         list.append(num)
     return list
-
-
-random_nums(5, 8)
