@@ -1,5 +1,6 @@
 import shutil
 import random
+from functools import reduce
 
 
 def filter_dirs_with_period(arr, path=None):
@@ -17,8 +18,10 @@ def filter_dirs_with_period(arr, path=None):
     return newArr
 
 
-def create_directory_list():
-    return
+def create_directory_list(arr):
+    return "list of Directories:\n\n" + reduce(
+        lambda accumulator, str: accumulator + str, arr
+    )
 
 
 def create_command_list():
