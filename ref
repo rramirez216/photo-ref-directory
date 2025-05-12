@@ -9,6 +9,7 @@ from helper_functions import (
     filter_dirs_with_period,
     copy_file,
     random_nums,
+    create_directory_list,
 )
 
 
