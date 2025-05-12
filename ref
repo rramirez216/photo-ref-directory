@@ -10,6 +10,7 @@ from helper_functions import (
     copy_file,
     random_nums,
     create_directory_list,
+    prepend_bullet_and_append_newline,
 )
 
 
