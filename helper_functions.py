@@ -24,6 +24,10 @@ def create_directory_list(arr):
     )
 
 
+def prepend_bullet_and_append_newline(item):
+    return f"- {item}\n"
+
+
 def create_command_list():
     return (
         "Usage:\n"
