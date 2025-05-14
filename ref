@@ -26,11 +26,11 @@ def main():
         home_dir_list = filter_dirs_with_period(os.listdir(home_dir), home_dir)
         ref_photo_dir = None
         list_of_directories_in_home = create_directory_list(
-            list(map(prepend_bullet_and_append_newline, home_dir_list))
+            map(prepend_bullet_and_append_newline, home_dir_list)
         )
         ref_photo_dir = input(
             (
-                f"{list_of_directories_in_home}Please type in the directory "
+                f"{list_of_directories_in_home}\nPlease type in the directory "
                 "name that contains the reference\n"
                 "image files or create a new one: \n"
             )
