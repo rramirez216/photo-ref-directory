@@ -18,11 +18,8 @@ def filter_dirs_with_period(arr, path=None):
     return newArr
 
 
-def create_directory_list(arr):
-    # return "list of Directories:\n\n" + reduce(
-    #     lambda accumulator, str: accumulator + str, arr
-    # )
-    return "list of Directories:\n\n" + "".join(arr)
+def create_directory_list(iterable):
+    return "list of Directories:\n\n" + "".join(iterable)
 
 
 def prepend_bullet_and_append_newline(item):
