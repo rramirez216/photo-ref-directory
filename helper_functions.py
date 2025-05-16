@@ -1,9 +1,9 @@
 import shutil
 import random
-from functools import reduce
 
 
 def filter_dirs_with_period(arr, path=None):
+    # replace for loop
     newArr = []
     for item in arr:
         if path is None:
