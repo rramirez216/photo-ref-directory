@@ -3,19 +3,23 @@ import random
 
 
 def filter_dirs_with_period(arr, path=None):
-    # replace for loop
-    newArr = []
-    for item in arr:
-        if path is None:
-            if not (item.name.startswith(".") or item.name.startswith("~")):
-                newArr.append(item)
-        else:
-            item_path = path / item
-            if not (
-                item.startswith(".") or item.startswith("~") or item_path.is_file()
-            ):
-                newArr.append(item)
-    return newArr
+    if path is None:
+        return list(
+            filter(
+                lambda item: not (
+                    item.name.startswith(".") or item.name.startswith("~")
+                ),
+                arr,
+            )
+        )
+    return list(
+        filter(
+            lambda item: not (
+                item.startswith(".") or item.startswith("~") or (path / item).is_file()
+            ),
+            arr,
+        )
+    )
 
 
 def create_directory_list(iterable):
