@@ -47,6 +47,7 @@ def copy_file(source, destination):
 
 
 def random_nums(amount, length):
+    # change for loop to use higher order functions
     list = []
     for i in range(amount):
         num = random.randrange(0, length)
