@@ -52,11 +52,15 @@ def main():
         else:
             # delete previous directory
             previous_ref_dir = parent_dir / "Ref_Inbox"
-            previous_glob = list(previous_ref_dir.glob("*.jpg"))
+            previous_glob = list(previous_ref_dir.glob("*"))
             for image in previous_glob:
                 os.unlink(image)
         for item in current_list_of_dirs:
-            if item.name == "Ref_Inbox":
+            if (
+                item.name == "Ref_Inbox"
+                or len(filter_dirs_with_period(item.glob("*"))) == 0
+                or item.suffix == "txt"
+            ):
                 continue
             item_list = filter_dirs_with_period(list(item.glob("*")))
             # figure out how to loop through a nested directory
