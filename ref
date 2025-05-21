@@ -67,11 +67,6 @@ def main():
             # maybe a while loop will help.
             if item_list[0].is_dir():
                 continue
-            # for sub_item in item_list:
-            #     if sub_item.is_dir():
-            #         sub_item_list = filter_dirs_with_period
-            #         (list(sub_item.glob("*.jpg")))
-            #         continue
             num_list = random_nums(5, len(item_list))
             for num in num_list:
                 image_list.append(item_list[num])
