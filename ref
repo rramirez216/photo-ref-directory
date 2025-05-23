@@ -21,7 +21,6 @@ def main():
         shelf.close()
         return
     home_dir = Path.home()
-    print(home_dir)
     command = sys.argv[1]
     if command == "reset" or command == "add":
         home_dir_list = filter_dirs_with_period(os.listdir(home_dir), home_dir)
