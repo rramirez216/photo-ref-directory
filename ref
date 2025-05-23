@@ -64,7 +64,6 @@ def main():
                 continue
             item_list = filter_dirs_with_period(list(item.glob("*")))
             # figure out how to loop through a nested directory
-            # maybe a while loop will help.
             if item_list[0].is_dir():
                 continue
             num_list = random_nums(5, len(item_list))
