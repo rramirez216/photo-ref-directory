@@ -46,13 +46,13 @@ def copy_file(source, destination):
     shutil.copy(source, destination)
 
 
-def random_nums(amount, length):
+def random_nums(count, limit):
     list = []
-    for i in range(amount):
-        num = random.randrange(0, length)
-        if length > amount:
-            while num in list:
-                print("redo!")
-                num = random.randrange(0, length)
+    count = limit if count > limit else count
+    for i in range(count):
+        num = random.randrange(0, limit)
+        while num in list:
+            print("redo!")
+            num = random.randrange(0, limit)
         list.append(num)
     return list
