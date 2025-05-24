@@ -56,3 +56,15 @@ def random_nums(count, limit):
             num = random.randrange(0, limit)
         list.append(num)
     return list
+
+
+def create_image_file_list(path, files=[]):
+    dir_content = filter_dirs_with_period(list(path.glob("*")))
+    new_files_list = files + list(filter(lambda x: x.is_file() is True, dir_content))
+    for file in dir_content:
+        if file.is_dir() is True:
+            new_files_list = new_files_list + create_image_file_list(
+                file, new_files_list
+            )
+        continue
+    return new_files_list
