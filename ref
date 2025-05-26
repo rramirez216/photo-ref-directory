@@ -64,7 +64,6 @@ def main():
             ):
                 continue
             item_list = create_image_file_list(item)
-
             num_list = random_nums(5, len(item_list))
             for num in num_list:
                 image_list.append(item_list[num])
