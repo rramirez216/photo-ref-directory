@@ -59,7 +59,6 @@ def random_nums(count, limit):
 
 
 def create_image_file_list(path, files=[]):
-    # figure out if I can do this without the continue
     dir_content = filter_dirs_with_period(list(path.glob("*")))
     new_files_list = files + list(filter(lambda x: x.is_file() is True, dir_content))
     for file in dir_content:
